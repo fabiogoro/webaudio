@@ -1,104 +1,59 @@
 <!DOCTYPE html>
-<html lang="en-us">
-<head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width">
-	<title>First test with WebAudio</title>
-  <script type="text/javascript">
-    var audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Computer Graphics">
+    <meta name="author" content="Fábio Goródscy">
 
-    var oscillator = audioCtx.createOscillator();
-    var gainNode = audioCtx.createGain();
+    <title>Web Audio API Tutorial</title>
 
-    oscillator.connect(gainNode);
-    gainNode.connect(audioCtx.destination);
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
+    integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7"
+    crossorigin="anonymous">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
 
-    var maxFreq = 6000;
-    var maxVol = 0.02;
-
-    var initialFreq = 3000;
-    var initialVol = 0.001;
-
-    oscillator.type = 'square';
-    oscillator.frequency.value = initialFreq; // value in hertz
-    oscillator.detune.value = 100; // value in cents
-    oscillator.start(0);
-
-    gainNode.gain.value = initialVol;
-
-    var CurX;
-    var CurY;
-
-    document.onmoudexsemove = updatePage;
-
-    function updatePage(e) {
-      KeyFlag = false;
-
-      CurX = (window.Event) ? e.pageX : event.clientX + (document.documentElement.scrollLeft ? document.documentElement.scrollLeft : document.body.scrollLeft);
-      CurY = (window.Event) ? e.pageY : event.clientY + (document.documentElement.scrollTop ? document.documentElement.scrollTop : document.body.scrollTop);
-
-      oscillator.frequency.value = (CurX/WIDTH) * maxFreq;
-      gainNode.gain.value = (CurY/HEIGHT) * maxVol;
-    }
-
-    var body = document.querySelector('body');
-
-    var KeyX = 1;
-    var KeyY = 0.01;
-    var KeyFlag = false;
-
-    body.onkeydown = function(e) {
-      KeyFlag = true;
-
-      // 37 is arrow left, 39 is arrow right,
-      // 38 is arrow up, 40 is arrow down
-
-      if(e.keyCode == 37) {
-        KeyX -= 20;
-      };
-
-      if(e.keyCode == 39) {
-        KeyX += 20;
-      };
-
-      if(e.keyCode == 38) {
-        KeyY -= 20;
-      };
-
-      if(e.keyCode == 40) {
-        KeyY += 20;
-      };
-
-      // set max and min constraints for KeyX and KeyY
-
-      if(KeyX < 1) {
-        KeyX = 1;
-      };
-
-      if(KeyX > WIDTH) {
-        KeyX = WIDTH;
-      };
-
-      if(KeyY < 0.01) {
-        KeyY = 0.01;
-      };
-
-      if(KeyY > HEIGHT) {
-        KeyY = HEIGHT;
-      };
-
-      oscillator.frequency.value = (KeyX/WIDTH) * maxFreq;
-      gainNode.gain.value = (KeyY/HEIGHT) * maxVol;
-    }
-
-  </script>
+		<script src="assets/application.js" type="text/javascript"></script>
+		<link rel="stylesheet" href="assets/application.css"></script>
 </head>
 <body>
-  <h1>Trying WebAudioAPI</h1>
-  <p>Use mouse or arrow keys to control theremin.</p>
+  <nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="#">Fábio Graphic Projects</a>
+      </div>
+      <div id="navbar" class="collapse navbar-collapse">
+        <ul class="nav navbar-nav">
+          <li class="active"><a href="#">Home</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
 
-  <canvas class="canvas">
-    Your browser does not support HTML5 canvas
-  </canvas>
+	<div class="main-section">
+		<h1>Web Audio API Tutorial</h1>
+		<p class="lead">In this example we show the Web Audio API basics for starting an application.</p>
+	</div>
+
+	<footer class="footer">
+    <div class="container">
+			<div class="col-xs-1">
+				<button type="button" class="btn btn-default" onclick="play(this);"><i class="fa fa-play"></i></button>
+			</div>
+			<div class="col-xs-2">
+				<input id="test" type="range" onchange="change_frequency(this);"/>
+			</div>
+    </div>
+  </footer>
 </body>
 </html>
