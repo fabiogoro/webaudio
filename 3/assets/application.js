@@ -23,8 +23,6 @@ oscillator.start(0);
 document.onmoudexsemove = update_page;
 
 function update_page(e) {
-  key_flag = false;
-
   cur_x = (window.Event) ? e.pageX : event.clientX + (document.documentElement.scrollLeft ? document.documentElement.scrollLeft : document.body.scrollLeft);
   cur_y = (window.Event) ? e.pageY : event.clientY + (document.documentElement.scrollTop ? document.documentElement.scrollTop : document.body.scrollTop);
 
