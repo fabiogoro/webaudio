@@ -1,6 +1,8 @@
-var audio_context = new (window.AudioContext || window.webkitAudioContext)();
+var audio_context;
 var oscillator;
 var gain;
+
+audio_context = new (window.AudioContext || window.webkitAudioContext)();
 
 function play(e){
   oscillator = audio_context.createOscillator();
@@ -9,13 +11,14 @@ function play(e){
   oscillator.connect(gain);
   gain.connect(audio_context.destination);
 
-  oscillator.type = 'square'; // sine wave — other values are 'square', 'sawtooth', 'triangle' and 'custom'
+  oscillator.type = 'sin'; // sine wave — other values are 'square', 'sawtooth', 'triangle' and 'custom'
   oscillator.frequency.value = 2500;
   oscillator.start(0);
 
-  gain.gain.value = 1;
   $(e).attr('onclick', 'stop(this);');
   $(e).html('<i class="fa fa-stop"></i>');
+  change_frequency($('#frequency'));
+  change_waveform($('#waveform'));
 }
 
 function stop(e){
@@ -25,5 +28,13 @@ function stop(e){
 }
 
 function change_frequency(e){
-  oscillator.frequency.value = $(e).val()*50+100;
+  oscillator.frequency.value = modulate_frequency(e);
+}
+
+function modulate_frequency(e){
+  return $(e).val()*50+100;
+}
+
+function change_waveform(e){
+  oscillator.type = $(e).val();
 }
