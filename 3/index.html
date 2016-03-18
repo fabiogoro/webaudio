@@ -39,13 +39,42 @@
       </div>
     </div>
   </nav>
-  <div class="main-section">
-    <h1>Web Audio API Tutorial</h1>
-		<p class="lead">Move your mouse to control the tone.</p>
-  </div>
 
-  <canvas class="canvas">
-    Your browser does not support HTML5 canvas
-  </canvas>
+	<div class="main-section">
+		<h1>Web Audio API Tutorial</h1>
+		<p class="lead">Adding some controls to the oscillator.</p>
+    <p class="row">
+      <div class="col-xs-2 col-xs-offset-4">
+				<button type="button" class="btn btn-default" onclick="play(this);"><i class="fa fa-play"></i></button>
+			</div>
+      <div class="col-xs-2">
+				<select id="waveform" onchange="change_waveform(this);">
+          <option value="sin">Sine</option>
+          <option value="sawtooth">Sawtooth</option>
+          <option value="triangle">Triangle</option>
+          <option value="square">Square</option>
+        </select>
+			</div>
+    </p>
+    <p class="row">
+			<div class="col-xs-4 col-xs-offset-4">
+        <label for="frequency">Frequency: </label>
+				<input id="frequency" type="range" onchange="change_frequency(this);"/>
+			</div>
+    </p>
+    <p class="row">
+			<div class="col-xs-4 col-xs-offset-4">
+        <label for="volume">Volume: </label>
+				<input id="volume" type="range" onchange="change_volume(this);"/>
+			</div>
+    </p>
+	</div>
+
+	<footer class="footer">
+    <div class="container">
+      <a class="btn btn-default pull-right" href="../4/index.html">Next</a>
+      <a class="btn btn-default" href="../2/index.html">Back</a>
+    </div>
+  </footer>
 </body>
 </html>

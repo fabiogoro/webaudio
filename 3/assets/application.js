@@ -1,31 +1,40 @@
 var audio_context;
 var oscillator;
 var gain;
-var cur_x;
-var cur_y;
-var max_freq = 6000;
-var max_vol = 0.02;
-var initial_freq = 3000;
-var initial_vol = 0.001;
 
 audio_context = new (window.AudioContext || window.webkitAudioContext)();
 
-oscillator = audio_context.createOscillator();
-gain = audio_context.createGain();
+function play(e){
+  oscillator = audio_context.createOscillator();
+  gain = audio_context.createGain();
 
-oscillator.connect(gain);
-gain.connect(audio_context.destination);
+  oscillator.connect(gain);
+  gain.connect(audio_context.destination);
 
-oscillator.type = 'sin'; // sine wave — other values are 'square', 'sawtooth', 'triangle' and 'custom'
-oscillator.frequency.value = initial_freq;
-oscillator.start(0);
+  oscillator.type = 'sin'; // sine wave — other values are 'square', 'sawtooth', 'triangle' and 'custom'
+  oscillator.frequency.value = 2500;
+  oscillator.start(0);
 
-document.onmoudexsemove = update_page;
+  $(e).attr('onclick', 'stop(this);');
+  $(e).html('<i class="fa fa-stop"></i>');
+  change_frequency($('#frequency'));
+  change_waveform($('#waveform'));
+}
 
-function update_page(e) {
-  cur_x = (window.Event) ? e.pageX : event.clientX + (document.documentElement.scrollLeft ? document.documentElement.scrollLeft : document.body.scrollLeft);
-  cur_y = (window.Event) ? e.pageY : event.clientY + (document.documentElement.scrollTop ? document.documentElement.scrollTop : document.body.scrollTop);
+function stop(e){
+  oscillator.stop(0);
+  $(e).attr('onclick', 'play(this);');
+  $(e).html('<i class="fa fa-play"></i>');
+}
 
-  oscillator.frequency.value = (cur_x/WIDTH) * max_freq;
-  gain.gain.value = (cur_y/HEIGHT) * max_vol;
+function change_frequency(e){
+  oscillator.frequency.value = $(e).val()*50+100;
+}
+
+function change_waveform(e){
+  oscillator.type = $(e).val();
+}
+
+function change_volume(e){
+  gain.gain.value = $(e).val()/100;
 }
