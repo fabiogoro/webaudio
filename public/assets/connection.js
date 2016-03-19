@@ -19,7 +19,7 @@ function create() {
 }
 
 function connect() {
-  peer = new Peer(2, { key: 'ofs1nu2rh3t0529' });
+  peer = new Peer({ key: 'ofs1nu2rh3t0529' });
   connection = peer.connect(1);
   connection.on('data', function(data) {
     $('#connection_status').html(data.name);
