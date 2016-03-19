@@ -15,37 +15,24 @@ var notes = [{ name: 'c4', frequency: 261.6, keyCode: 65 , oscillator: audio_con
              { name: 'd5', frequency: 587.3, keyCode: 76 , oscillator: audio_context.createOscillator() },
              { name: 'e5', frequency: 659.3, keyCode: 186, oscillator: audio_context.createOscillator() }];
 
-function play(note) {
-  var i=0;
-  while(i<notes.length) {
-    if(notes[i].keyCode===note) {
-      notes[i].oscillator.connect(audio_context.destination);
-      send({name: notes[i].name,action: 'play'});
-      i = notes.length;
-    } else if(notes[i].name===note) {
-      notes[i].oscillator.connect(audio_context.destination);
-      send({name: notes[i].name,action: 'play'});
-      i = notes.length;
-    }
-    i++;
-  }
-
-}
-
-function stop(note) {
+function key_lookup(note){
   i=0;
   while(i<notes.length) {
-    if(notes[i].keyCode===note) {
-      notes[i].oscillator.disconnect();
-      send({name: notes[i].name,action: 'stop'});
-      i = notes.length;
-    } else if(notes[i].name===note) {
-      notes[i].oscillator.disconnect();
-      send({name: notes[i].name,action: 'stop'});
+    if(notes[i].keyCode===note.name || notes[i].name===note.name) {
+      if(note.action==='play') {
+        notes[i].oscillator.connect(audio_context.destination);
+      }else if(note.action==='stop'){
+        notes[i].oscillator.disconnect();
+      }
       i = notes.length;
     }
     i++;
   }
+}
+
+function hit(data) {
+  key_lookup(data);
+  send(data);
 }
 
 $(function() {
@@ -59,9 +46,13 @@ $(function() {
   }
 
   $('body').on('keydown', function(e) {
-    play(e.keyCode);
+    data = {name: e.keyCode, action: 'play'};
+    key_lookup(data);
+    send(data);
   });
   $('body').on('keyup', function(e) {
-    stop(e.keyCode);
+    data = {name: e.keyCode, action: 'stop'};
+    key_lookup(data);
+    send(data);
   });
 });

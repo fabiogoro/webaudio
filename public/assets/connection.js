@@ -2,7 +2,7 @@ var peer;
 var connection;
 
 function create() {
-  peer = new Peer(1, { key: 'ofs1nu2rh3t0529' });
+  peer = new Peer(3, { key: 'ofs1nu2rh3t0529' });
 
   peer.on('connection', function(c) {
     connection = c;
@@ -13,21 +13,17 @@ function create() {
     });
     connection.on('data', function(data) {
       $('#connection_status').html(data.name);
-      if(data.action==='play') {
-        play(data.name);
-      }
-      if(data.action==='stop') {
-        stop(data.name);
-      }
+      key_lookup(data);
     });
   });
 }
 
 function connect() {
-  peer = new Peer(2, { key: 'ofs1nu2rh3t0529' });
-  connection = peer.connect(1);
+  peer = new Peer(4, { key: 'ofs1nu2rh3t0529' });
+  connection = peer.connect(3);
   connection.on('data', function(data) {
     $('#connection_status').html(data.name);
+    key_lookup(data);
   });
 }
 
