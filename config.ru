@@ -1,5 +1,5 @@
 use Rack::Static,
-  :urls => Dir.glob("#{root}/*").map { |fn| fn.gsub(/#{root}/, '')},
+  :urls => ["/images", "/js", "/css"],
   :root => "public",
   :index => 'index.html',
   :header_rules => [[:all, {'Cache-Control' => 'public, max-age=3600'}]]
