@@ -44,6 +44,7 @@
 	<div class="main-section">
 		<h1>Web Audio API Tutorial</h1>
 		<p class="lead">In this example we show the Web Audio API basics for starting an application.</p>
+    <div id="helloworld"></div>
 	</div>
 
 	<footer class="footer">
@@ -52,7 +53,7 @@
       <div class="input-group pull-right col-xs-3">
         <input id="dest_id" type="text" class="form-control" placeholder="Input user ID to connect..."/>
         <span class="input-group-btn">
-          <button type="button" class="btn btn-default" onclick="connect();">Start</button>
+          <button id="connect_button" type="button" class="btn btn-default" onclick="connect();" disabled=true>Start</button>
         </span>
       </div>
     </div>
