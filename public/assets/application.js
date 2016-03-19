@@ -31,8 +31,8 @@ function key_lookup(note){
 }
 
 function hit(data) {
-  key_lookup(data);
   send(data);
+  key_lookup(data);
 }
 
 $(function() {
@@ -47,12 +47,12 @@ $(function() {
 
   $('body').on('keydown', function(e) {
     data = {name: e.keyCode, action: 'play'};
-    key_lookup(data);
     send(data);
+    key_lookup(data);
   });
   $('body').on('keyup', function(e) {
     data = {name: e.keyCode, action: 'stop'};
-    key_lookup(data);
     send(data);
+    key_lookup(data);
   });
 });

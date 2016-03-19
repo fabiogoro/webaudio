@@ -10,29 +10,14 @@ function create() {
 
   peer.on('connection', function(c) {
     connection = c;
-    connection.on('open', function(id) {
-      data = {name: 'Succefully connected.', action: 'connect'};
-      $('#connection_status').html(data.name);
-      connection.send(data);
-    });
-    connection.on('data', function(data) {
-      $('#connection_status').html(data.name);
-      key_lookup(data);
-    });
+    connection.on('data', key_lookup(data));
   });
 }
 
 function connect() {
   peer = new Peer({ key: 'ofs1nu2rh3t0529' });
   connection = peer.connect($('#dest_id').val());
-  connection.on('data', function(data) {
-    $('#connection_status').html(data.name);
-    key_lookup(data);
-  });
-}
-
-function close() {
-  peer.disconnect();
+  connection.on('data', key_lookup(data));
 }
 
 function send(data) {
