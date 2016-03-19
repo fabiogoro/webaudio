@@ -10,14 +10,18 @@ function create() {
 
   peer.on('connection', function(c) {
     connection = c;
-    connection.on('data', key_lookup(data));
+    connection.on('data', function(data) {
+      key_lookup(data);
+    });
   });
 }
 
 function connect() {
   peer = new Peer({ key: 'ofs1nu2rh3t0529' });
   connection = peer.connect($('#dest_id').val());
-  connection.on('data', key_lookup(data));
+  connection.on('data', function(data) {
+    key_lookup(data);
+  });
 }
 
 function send(data) {
