@@ -31,8 +31,6 @@ function connect() {
   });
 }
 
-function send(data) {
-  if(undefined != connection){
-    connection.send(data);
-  }
+function send() {
+
 }
