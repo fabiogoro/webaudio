@@ -74,6 +74,6 @@ $(function(){
   });
   $('body').on('keyup', function(e) {
     send(0);
-    stop()
+    stop();
   });
 });
