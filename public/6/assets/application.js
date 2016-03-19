@@ -19,6 +19,7 @@ function stop() {
 
 function hit(note){
   if(note===0){
+    send(note);
     stop();
   } else {
     send(note);
