@@ -14,17 +14,27 @@ var notes = [{ name: 'c4', frequency: 261.6, keyCode: 65 , oscillator: audio_con
              { name: 'd5', frequency: 587.3, keyCode: 76 , oscillator: audio_context.createOscillator() },
              { name: 'e5', frequency: 659.3, keyCode: 186, oscillator: audio_context.createOscillator() }];
 
-
-
-function play(note) {
-  note.oscillator.connect(audio_context.destination);
+function key_lookup(note){
+  i=0;
+  while(i<notes.length) {
+    if(notes[i].keyCode===note.name || notes[i].name===note.name) {
+      if(note.action==='play') {
+        notes[i].oscillator.connect(audio_context.destination);
+      }else if(note.action==='stop'){
+        notes[i].oscillator.disconnect();
+      }
+      i = notes.length;
+    }
+    i++;
+  }
 }
 
-function stop(note) {
-  note.oscillator.disconnect();
+function hit(data) {
+  send(data);
+  key_lookup(data);
 }
 
-$(function(){
+$(function() {
   function setup(note) {
     note.oscillator.type = 'sawtooth'; // sine wave — other values are 'square', 'sawtooth', 'triangle' and 'custom'
     note.oscillator.frequency.value = note.frequency;
@@ -35,27 +45,13 @@ $(function(){
   }
 
   $('body').on('keydown', function(e) {
-    switch (e.keyCode) {
-      case 65: play(notes[0]); break;
-      case 83: play(notes[1]); break;
-      case 68: play(notes[2]); break;
-      case 70: play(notes[3]); break;
-      case 71: play(notes[4]); break;
-      case 72: play(notes[5]); break;
-      case 74: play(notes[6]); break;
-      case 75: play(notes[7]); break;
-    }
+    data = {name: e.keyCode, action: 'play'};
+    send(data);
+    key_lookup(data);
   });
   $('body').on('keyup', function(e) {
-    switch (e.keyCode) {
-      case 65: stop(notes[0]); break;
-      case 83: stop(notes[1]); break;
-      case 68: stop(notes[2]); break;
-      case 70: stop(notes[3]); break;
-      case 71: stop(notes[4]); break;
-      case 72: stop(notes[5]); break;
-      case 74: stop(notes[6]); break;
-      case 75: stop(notes[7]); break;
-    }
+    data = {name: e.keyCode, action: 'stop'};
+    send(data);
+    key_lookup(data);
   });
 });

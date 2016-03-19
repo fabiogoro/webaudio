@@ -10,7 +10,7 @@ gain = audio_context.createGain();
 oscillator.connect(gain);
 
 oscillator.type = 'sin'; // sine wave — other values are 'square', 'sawtooth', 'triangle' and 'custom'
-oscillator.frequency.value = 2500;
+oscillator.frequency.value = 261.6;
 oscillator.start(0);
 
 function play(e){
@@ -29,7 +29,7 @@ function stop(e){
 }
 
 function change_frequency(e){
-  oscillator.frequency.value = $(e).val()*50+100;
+  oscillator.frequency.value = ($(e).val()/100)*(659.3-261.6)+261.6;
 }
 
 function change_waveform(e){
