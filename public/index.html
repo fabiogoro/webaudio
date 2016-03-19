@@ -46,14 +46,16 @@
 		<h1>Web Audio API Tutorial</h1>
 		<p class="lead">In this example we show the Web Audio API basics for starting an application.</p>
     <p>
-      <button type="button" class="btn btn-success" onclick="create();">Create new session</button>
-      <div class="input-group">
-      <input type="text" id="dest_id" placeholder="Input session id..."/>
-      <span class="input-group-btn">
-        <button type="button" class="btn btn-warning" onclick="connect();">Connect to session</button>
-      </span>
+      <div class="input-group col-lg-offset-3 col-lg-6">
+        <span class="input-group-btn">
+          <button type="button" class="btn btn-success" onclick="create();">Create new session</button>
+        </span>
+        <input type="text" id="dest_id" class="form-control" placeholder="Input session id..."/>
+        <span class="input-group-btn">
+          <button type="button" class="btn btn-warning" onclick="connect();">Connect to session</button>
+        </span>
+      </div>
     </p>
-    <p id="connection_status"></p>
     <p class="row center">
       <div class="btn-group">
         <button type="button" class="btn btn-lg btn-default" onmousedown="hit({ name: 'c4', action: 'play' });" onmouseup="hit({ name: 'c4', action: 'stop' });" ontouchstart="hit({ name: 'c4', action: 'play' });" ontouchend="hit({ name: 'c4', action: 'stop' });">C4</button>
