@@ -48,7 +48,13 @@
 
 	<footer class="footer">
     <div class="container">
-      <a class="btn btn-default pull-right" href="1/index.html">Start</a>
+      <span id="my_id" class="col-xs-3"></span>
+      <div class="input-group pull-right col-xs-3">
+        <input id="dest_id" type="text" class="form-control" placeholder="Input user ID to connect..."/>
+        <span class="input-group-btn">
+          <button type="button" class="btn btn-default" onclick="connect();">Start</button>
+        </span>
+      </div>
     </div>
   </footer>
 </body>

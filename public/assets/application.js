@@ -1,17 +1,17 @@
-var peer = new Peer({key: 'lwjd5qra8257b9'});
+var peer = new Peer({key: 'ofs1nu2rh3t0529'});
 
 peer.on('open', function(id) {
-  console.log('My peer ID is: ' + id);
+  $("#my_id").html('My peer ID is: ' + id);
 });
 
-var conn = peer.connect('dest-peer-id');
+function connect() {
+  var conn = peer.connect($("#dest_id").val());
+  conn.on('open', function() {
+    // Receive messages
+    conn.on('data', function(data) {
+      console.log('Received', data);
+    });
 
-conn.on('open', function() {
-  // Receive messages
-  conn.on('data', function(data) {
-    console.log('Received', data);
+    conn.send('Hello!');
   });
-
-  // Send messages
-  conn.send('Hello!');
-});
+}
