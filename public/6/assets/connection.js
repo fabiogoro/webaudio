@@ -10,14 +10,26 @@ function create() {
 
   peer.on('connection', function(c) {
     connection = c;
-    connection.on('data', play(data));
+    connection.on('data', function(data) {
+      if(data===0) {
+        stop();
+      } else {
+        play(data);
+      }
+    });
   });
 }
 
 function connect() {
   peer = new Peer({ key: 'ofs1nu2rh3t0529' });
   connection = peer.connect($('#dest_id').val());
-  connection.on('data', play(data));
+  connection.on('data', function(data) {
+    if(data===0) {
+      stop();
+    } else {
+      play(data);
+    }
+  });
 }
 
 function send(data) {
