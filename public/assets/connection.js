@@ -2,7 +2,7 @@ var peer;
 var connection;
 
 function create() {
-  peer = new Peer(1, { key: 'ofs1nu2rh3t0529' });
+  peer = new Peer({ key: 'ofs1nu2rh3t0529' });
 
   peer.on('open', function(id) {
     $('#dest_id').val('Share your session id: ' + id);
