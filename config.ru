@@ -1,6 +1,8 @@
 use Rack::Static,
   :urls => Dir.glob("#{root}/*").map { |fn| fn.gsub(/#{root}/, '')},
-  :root => "public"
+  :root => "public",
+  :index => 'index.html',
+  :header_rules => [[:all, {'Cache-Control' => 'public, max-age=3600'}]]
 
 run lambda { |env|
   [
