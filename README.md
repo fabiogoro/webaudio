@@ -12,7 +12,7 @@ At the end of the current 7 examples you should be able of:
 - Using the Oscillator to create sounds with different frequencies
 - Controling volume of the sound and its waveform
 - Applying all of this to create a piano on the browser
-- And in the end: Using peer.js to exchange info of Web Audio through browsers
+- And in the end: Using peer.js or pubnub to exchange info of Web Audio through browsers
 
 This repository should be easy to run in any computer,
 just clone it and open the index.html file in any browser.
