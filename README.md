@@ -2,11 +2,11 @@
 
 This is a tutorial about Web Audio API.
 
-Each of the folders contain a lesson, which is a working example.
+Each folder contains a lesson, which is a working example.
 Try to understand an example and jump to the next one,
 each one is a little bit harder then the last one.
 
-At the end of the current 7 examples you should be able of:
+At the end of the examples you should be able of:
 
 - Starting Web Audio Objects
 - Using the Oscillator to create sounds with different frequencies
