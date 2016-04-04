@@ -18,10 +18,23 @@ body {
   padding: 40px 15px;
   text-align: center;
 }
-.center {
-  margin:auto;
+
+
+.title {
+  background-color: lightblue;
   margin-left: 25%;
   margin-right: 25%;
-  margin-top: 10px;
-  margin-bottom: 10px;
+  padding-top: 30px;
+  padding-bottom: 30px;
+}
+
+.author {
+  margin-top: 50px;
+  margin-bottom: 30px;
+}
+.slide {
+  margin-top: 40px;
+  margin-left: 25%;
+  margin-right: 25%;
+  text-align: left;
 }

@@ -4,7 +4,7 @@ var pubnub = PUBNUB({
 });
 
 pubnub.subscribe({
-  channel : "piano",
+  channel : 'piano',
   callback: function(data) {
       key_lookup(data);
   },

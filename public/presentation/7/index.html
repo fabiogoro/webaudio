@@ -34,7 +34,7 @@
       </div>
       <div id="navbar" class="collapse navbar-collapse">
         <ul class="nav navbar-nav">
-          <li><a href="../index.html">Home</a></li>
+          <li><a href="../index.html">Início</a></li>
           <li><a href="../1/index.html">1</a></li>
           <li><a href="../2/index.html">2</a></li>
           <li><a href="../3/index.html">3</a></li>
@@ -49,8 +49,8 @@
   </nav>
 
 	<div class="main-section">
-		<h1>Web Audio API Tutorial</h1>
-		<p class="lead">Piano using peer.js for real-time music jams.</p>
+		<h1>Exemplo 7</h1>
+		<p class="lead">Usando peer.js para trocar informações entre browsers.</p>
     <p>
       <div class="input-group col-lg-offset-3 col-lg-6">
         <span class="input-group-btn">
@@ -74,12 +74,34 @@
 				<button type="button" class="btn btn-lg btn-default" onmousedown="hit(523.3);" onmouseup="hit(0);" ontouchstart="hit(523.3);" ontouchend="hit(0);">C5</button>
       </div>
     </p>
+    <p class="code">
+      <span class="func">function hit</span>(note){<br>
+        &ensp;if(note===0){<br>
+          &ensp;&ensp;<span class="func">send</span>(note);<br>
+          &ensp;&ensp;<span class="func">stop</span>();<br>
+        &ensp;} else {<br>
+          &ensp;&ensp;<span class="func">send</span>(note);<br>
+          &ensp;&ensp;<span class="func">play</span>(note);<br>
+        &ensp;}<br>
+      }<br><br>
+
+      <span class="func">function play</span>(note) {<br>
+        &ensp;<span class="var">oscillator</span>.frequency.value = note;<br>
+        &ensp;<span class="var">oscillator</span>.connect(<span class="var">audio_context</span>.destination);<br>
+      }<br><br>
+
+      <span class="func">function stop</span>() {<br>
+        &ensp;<span class="var">oscillator</span>.disconnect();<br>
+      }<br><br>
+
+      <span class="comment"># HTML de cada botão de nota: onmousedown="hit(261.6);"</span>
+    </p>
 	</div>
 
 	<footer class="footer">
     <div class="container">
-      <a class="btn btn-default pull-right" href="../8/index.html">Next</a>
-      <a class="btn btn-default" href="../6/index.html">Back</a>
+      <a class="btn btn-default pull-right" href="../8/index.html">Próximo</a>
+      <a class="btn btn-default" href="../6/index.html">Anterior</a>
     </div>
   </footer>
 </body>

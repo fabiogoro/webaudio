@@ -18,10 +18,20 @@ body {
   padding: 40px 15px;
   text-align: center;
 }
-.center {
-  margin:auto;
+.code {
+  background-color: black;
+  color: white;
+  font-family: monospace;
+  text-align: left;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  padding-left: 20px;
   margin-left: 25%;
   margin-right: 25%;
-  margin-top: 10px;
-  margin-bottom: 10px;
+}
+.var {
+  color: orange;
+}
+.val {
+  color: lightgreen;
 }

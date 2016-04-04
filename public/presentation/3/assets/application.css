@@ -25,3 +25,26 @@ body {
   margin-top: 10px;
   margin-bottom: 10px;
 }
+.code {
+  background-color: black;
+  color: white;
+  font-family: monospace;
+  text-align: left;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  padding-left: 20px;
+  margin-left: 25%;
+  margin-right: 25%;
+}
+.var {
+  color: orange;
+}
+.val {
+  color: lightgreen;
+}
+.func {
+  color: #0066FF;
+}
+.jquery {
+  color: #FF0033;
+}

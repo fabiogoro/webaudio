@@ -32,7 +32,7 @@
       </div>
       <div id="navbar" class="collapse navbar-collapse">
         <ul class="nav navbar-nav">
-          <li><a href="../index.html">Home</a></li>
+          <li><a href="../index.html">Início</a></li>
           <li><a href="../1/index.html">1</a></li>
           <li><a href="../2/index.html">2</a></li>
           <li><a href="../3/index.html">3</a></li>
@@ -47,8 +47,8 @@
   </nav>
 
 	<div class="main-section">
-		<h1>Web Audio API Tutorial</h1>
-		<p class="lead">Allowing multiple notes at the same time on piano.</p>
+		<h1>Exemplo 5</h1>
+		<p class="lead">Melhorando um pouco o teclado.</p>
     <p class="row center">
       <div class="btn-group">
         <button type="button" class="btn btn-lg btn-default" onmousedown="play(notes[0]);" onmouseup="stop(notes[0]);">C4</button>
@@ -61,12 +61,39 @@
 				<button type="button" class="btn btn-lg btn-default" onmousedown="play(notes[7]);" onmouseup="stop(notes[7]);">C5</button>
 			</div>
     </p>
+    <p class="code">
+      <span class="func">function play</span>(note){<br>
+        &ensp;<span class="var">note</span>.oscillator.connect(<span class="var">audio_context</span>.destination);<br>
+      }<br><br>
+
+      <span class="func">function stop</span>(note){<br>
+        &ensp;<span class="var">note</span>.oscillator.disconnect();<br>
+      }<br><br>
+
+      <span class="var">notes</span> = [<br>
+        { name: <span class="val">'c4'</span>, frequency: <span class="val">261.6</span>, keyCode: <span class="val">65</span> , <br>
+        &ensp;&ensp;oscillator: <span class="var">audio_context</span>.createOscillator() },<br>
+        { name: <span class="val">'d4'</span>, frequency: <span class="val">293.7</span>, keyCode: <span class="val">83</span> , <br>
+        &ensp;&ensp;oscillator: <span class="var">audio_context</span>.createOscillator() }];<br>
+      <br>
+      <span class="jquery">$(function()</span>{<br>
+        &ensp;<span class="func">function setup</span>(note) {<br>
+          &ensp;&ensp;<span class="var">note</span>.oscillator.type = <span class="val">'sawtooth'</span>; <br>
+          &ensp;&ensp;<span class="var">note</span>.oscillator.frequency.value = <span class="var">note</span>.frequency;<br>
+          &ensp;&ensp;<span class="var">note</span>.oscillator.start(0);<br>
+        &ensp;}<br>
+        &ensp;for(i=0;i&lt;<span class="var">notes</span>.length;i++){ <br>
+          &ensp;&ensp;<span class="func">setup</span>(<span class="var">notes</span>[i]);<br>
+        &ensp;}<br>
+      });<br><br>
+      <span class="comment"># HTML de cada botão de nota: onmousedown="play(notes[0]);" onmouseup="stop(notes[0]);"</span>
+    </p>
 	</div>
 
 	<footer class="footer">
     <div class="container">
-      <a class="btn btn-default pull-right" href="../6/index.html">Next</a>
-      <a class="btn btn-default" href="../4/index.html">Back</a>
+      <a class="btn btn-default pull-right" href="../6/index.html">Próximo</a>
+      <a class="btn btn-default" href="../4/index.html">Anterio</a>
     </div>
   </footer>
 </body>

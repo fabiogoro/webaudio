@@ -34,23 +34,23 @@
       </div>
       <div id="navbar" class="collapse navbar-collapse">
         <ul class="nav navbar-nav">
-          <li><a href="../index.html">Home</a></li>
+          <li><a href="../index.html">Início</a></li>
           <li><a href="../1/index.html">1</a></li>
           <li><a href="../2/index.html">2</a></li>
           <li><a href="../3/index.html">3</a></li>
           <li><a href="../4/index.html">4</a></li>
           <li><a href="../5/index.html">5</a></li>
           <li><a href="../6/index.html">6</a></li>
-          <li class="active"><a href="../7/index.html">7</a></li>
-          <li><a href="../8/index.html">8</a></li>
+          <li><a href="../7/index.html">7</a></li>
+          <li class="active"><a href="../8/index.html">8</a></li>
         </ul>
       </div>
     </div>
   </nav>
 
 	<div class="main-section">
-		<h1>Web Audio API Tutorial</h1>
-		<p class="lead">Piano using peer.js for real-time music jams.</p>
+		<h1>Exemplo 8</h1>
+		<p class="lead">Usando peer.js no piano 2.</p>
     <p>
       <div class="input-group col-lg-offset-3 col-lg-6">
         <span class="input-group-btn">
@@ -64,22 +64,22 @@
     </p>
     <p class="row center">
       <div class="btn-group">
-        <button type="button" class="btn btn-lg btn-default" onmousedown="hit(261.6);" onmouseup="hit(0);" ontouchstart="hit(261.6);" ontouchend="hit(0);">C4</button>
-        <button type="button" class="btn btn-lg btn-default" onmousedown="hit(293.7);" onmouseup="hit(0);" ontouchstart="hit(293.7);" ontouchend="hit(0);">D4</button>
-        <button type="button" class="btn btn-lg btn-default" onmousedown="hit(329.6);" onmouseup="hit(0);" ontouchstart="hit(329.6);" ontouchend="hit(0);">E4</button>
-        <button type="button" class="btn btn-lg btn-default" onmousedown="hit(349.2);" onmouseup="hit(0);" ontouchstart="hit(349.2);" ontouchend="hit(0);">F4</button>
-        <button type="button" class="btn btn-lg btn-default" onmousedown="hit(392.0);" onmouseup="hit(0);" ontouchstart="hit(392.0);" ontouchend="hit(0);">G4</button>
-        <button type="button" class="btn btn-lg btn-default" onmousedown="hit(440.0);" onmouseup="hit(0);" ontouchstart="hit(440.0);" ontouchend="hit(0);">A4</button>
-        <button type="button" class="btn btn-lg btn-default" onmousedown="hit(493.9);" onmouseup="hit(0);" ontouchstart="hit(493.9);" ontouchend="hit(0);">B4</button>
-				<button type="button" class="btn btn-lg btn-default" onmousedown="hit(523.3);" onmouseup="hit(0);" ontouchstart="hit(523.3);" ontouchend="hit(0);">C5</button>
-      </div>
+        <button type="button" class="btn btn-lg btn-default" onmousedown="hit(this,{ name: 0, action: 1 });" onmouseup="hit(this,{ name: 0, action: 0 });" ontouchstart="hit(this,{ name: 0, action: 1 });" ontouchend="hit(this,{ name: 0, action: 0 });">C4</button>
+        <button type="button" class="btn btn-lg btn-default" onmousedown="hit(this,{ name: 1, action: 1 });" onmouseup="hit(this,{ name: 1, action: 0 });" ontouchstart="hit(this,{ name: 1, action: 1 });" ontouchend="hit(this,{ name: 1, action: 0 });">D4</button>
+        <button type="button" class="btn btn-lg btn-default" onmousedown="hit(this,{ name: 2, action: 1 });" onmouseup="hit(this,{ name: 2, action: 0 });" ontouchstart="hit(this,{ name: 2, action: 1 });" ontouchend="hit(this,{ name: 2, action: 0 });">E4</button>
+        <button type="button" class="btn btn-lg btn-default" onmousedown="hit(this,{ name: 3, action: 1 });" onmouseup="hit(this,{ name: 3, action: 0 });" ontouchstart="hit(this,{ name: 3, action: 1 });" ontouchend="hit(this,{ name: 3, action: 0 });">F4</button>
+        <button type="button" class="btn btn-lg btn-default" onmousedown="hit(this,{ name: 4, action: 1 });" onmouseup="hit(this,{ name: 4, action: 0 });" ontouchstart="hit(this,{ name: 4, action: 1 });" ontouchend="hit(this,{ name: 4, action: 0 });">G4</button>
+        <button type="button" class="btn btn-lg btn-default" onmousedown="hit(this,{ name: 5, action: 1 });" onmouseup="hit(this,{ name: 5, action: 0 });" ontouchstart="hit(this,{ name: 5, action: 1 });" ontouchend="hit(this,{ name: 5, action: 0 });">A4</button>
+        <button type="button" class="btn btn-lg btn-default" onmousedown="hit(this,{ name: 6, action: 1 });" onmouseup="hit(this,{ name: 6, action: 0 });" ontouchstart="hit(this,{ name: 6, action: 1 });" ontouchend="hit(this,{ name: 6, action: 0 });">B4</button>
+				<button type="button" class="btn btn-lg btn-default" onmousedown="hit(this,{ name: 7, action: 1 });" onmouseup="hit(this,{ name: 7, action: 0 });" ontouchstart="hit(this,{ name: 7, action: 1 });" ontouchend="hit(this,{ name: 7, action: 0 });">C5</button>
+			</div>
     </p>
 	</div>
 
 	<footer class="footer">
     <div class="container">
-      <a class="btn btn-default pull-right" href="../8/index.html">Next</a>
-      <a class="btn btn-default" href="../6/index.html">Back</a>
+      <a class="btn btn-default pull-right" href="../conclusion.html">Próximo</a>
+      <a class="btn btn-default" href="../7/index.html">Anterio</a>
     </div>
   </footer>
 </body>

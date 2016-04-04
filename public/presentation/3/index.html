@@ -32,7 +32,7 @@
       </div>
       <div id="navbar" class="collapse navbar-collapse">
         <ul class="nav navbar-nav">
-          <li><a href="../index.html">Home</a></li>
+          <li><a href="../index.html">Início</a></li>
           <li><a href="../1/index.html">1</a></li>
           <li><a href="../2/index.html">2</a></li>
           <li class="active"><a href="../3/index.html">3</a></li>
@@ -47,8 +47,8 @@
   </nav>
 
 	<div class="main-section">
-		<h1>Web Audio API Tutorial</h1>
-		<p class="lead">Adding some controls to the oscillator.</p>
+		<h1>Exemplo 3</h1>
+		<p class="lead">Alterando forma de onda e volume.</p>
     <p class="row center">
 			<button type="button" class="btn btn-default col-xs-offset-3 col-xs-2" onclick="play(this);"><i class="fa fa-play"></i></button>
 			<select id="waveform" onchange="change_waveform(this);" class="col-xs-3 col-xs-offset-1">
@@ -63,15 +63,40 @@
 			<input id="frequency" type="range" onchange="change_frequency(this);"/>
     </p>
     <p class="row center">
-      <label for="volume">Volume: </label>
-			<input id="volume" type="range" onchange="change_volume(this);"/>
+      <label for="gain">Gain: </label>
+			<input id="gain" type="range" onchange="change_gain(this);"/>
+    </p>
+    <p class="code">
+      <span class="var">oscillator</span> = <span class="var">audio_context</span>.createOscillator();<br>
+      <span class="var">gain</span> = <span class="var">audio_context</span>.createGain();<br>
+      <span class="var">oscillator</span>.connect(<span class="var">gain</span>);<br><br>
+
+      <span class="func">function play</span>(e){<br>
+        &ensp;<span class="var">gain</span>.connect(<span class="var">audio_context</span>.destination);<br>
+      }<br><br>
+
+      <span class="func">function stop</span>(e){<br>
+        &ensp;<span class="var">gain</span>.disconnect();<br>
+      }<br><br>
+
+      <span class="func">function change_frequency</span>(e){<br>
+        &ensp;<span class="var">oscillator</span>.frequency.value = (<span class="jquery">$(e).val()</span>/100)*(659.3-261.6)+261.6;<br>
+      }<br><br>
+
+      <span class="func">function change_waveform</span>(e){<br>
+        &ensp;<span class="var">oscillator</span>.type = <span class="jquery">$(e).val()</span>;<br>
+      }<br><br>
+
+      <span class="func">function change_gain</span>(e){<br>
+        &ensp;<span class="var">gain</span>.gain.value = <span class="jquery">$(e).val()</span>/100;<br>
+      }<br><br>
     </p>
 	</div>
 
 	<footer class="footer">
     <div class="container">
-      <a class="btn btn-default pull-right" href="../4/index.html">Next</a>
-      <a class="btn btn-default" href="../2/index.html">Back</a>
+      <a class="btn btn-default pull-right" href="../4/index.html">Próximo</a>
+      <a class="btn btn-default" href="../2/index.html">Anterior</a>
     </div>
   </footer>
 </body>

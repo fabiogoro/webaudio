@@ -3,16 +3,16 @@ var gain;
 
 audio_context = new (window.AudioContext || window.webkitAudioContext)();
 
-var notes = [{ name: 'c4', frequency: 261.6, keyCode: 65 , oscillator: audio_context.createOscillator() },
-             { name: 'd4', frequency: 293.7, keyCode: 83 , oscillator: audio_context.createOscillator() },
-             { name: 'e4', frequency: 329.6, keyCode: 68 , oscillator: audio_context.createOscillator() },
-             { name: 'f4', frequency: 349.2, keyCode: 70 , oscillator: audio_context.createOscillator() },
-             { name: 'g4', frequency: 392.0, keyCode: 71 , oscillator: audio_context.createOscillator() },
-             { name: 'a4', frequency: 440.0, keyCode: 72 , oscillator: audio_context.createOscillator() },
-             { name: 'b4', frequency: 493.9, keyCode: 74 , oscillator: audio_context.createOscillator() },
-             { name: 'c5', frequency: 523.3, keyCode: 75 , oscillator: audio_context.createOscillator() },
-             { name: 'd5', frequency: 587.3, keyCode: 76 , oscillator: audio_context.createOscillator() },
-             { name: 'e5', frequency: 659.3, keyCode: 186, oscillator: audio_context.createOscillator() }];
+var notes = [{ name: 'c4', frequency: 261.6, keyCode: 65 , oscillator: audio_context.createOscillator(), i: 0 },
+             { name: 'd4', frequency: 293.7, keyCode: 83 , oscillator: audio_context.createOscillator(), i: 0 },
+             { name: 'e4', frequency: 329.6, keyCode: 68 , oscillator: audio_context.createOscillator(), i: 0 },
+             { name: 'f4', frequency: 349.2, keyCode: 70 , oscillator: audio_context.createOscillator(), i: 0 },
+             { name: 'g4', frequency: 392.0, keyCode: 71 , oscillator: audio_context.createOscillator(), i: 0 },
+             { name: 'a4', frequency: 440.0, keyCode: 72 , oscillator: audio_context.createOscillator(), i: 0 },
+             { name: 'b4', frequency: 493.9, keyCode: 74 , oscillator: audio_context.createOscillator(), i: 0 },
+             { name: 'c5', frequency: 523.3, keyCode: 75 , oscillator: audio_context.createOscillator(), i: 0 },
+             { name: 'd5', frequency: 587.3, keyCode: 76 , oscillator: audio_context.createOscillator(), i: 0 },
+             { name: 'e5', frequency: 659.3, keyCode: 186, oscillator: audio_context.createOscillator(), i: 0 }];
 
 function key_lookup(note){
   if(note.action===1) {

@@ -32,7 +32,7 @@
       </div>
       <div id="navbar" class="collapse navbar-collapse">
         <ul class="nav navbar-nav">
-          <li><a href="../index.html">Home</a></li>
+          <li><a href="../index.html">Início</a></li>
           <li><a href="../1/index.html">1</a></li>
           <li class="active"><a href="../2/index.html">2</a></li>
           <li><a href="../3/index.html">3</a></li>
@@ -46,13 +46,35 @@
     </div>
   </nav>
   <div class="main-section">
-    <h1>Web Audio API Tutorial</h1>
-		<p class="lead">Move your mouse to control the tone.</p>
+    <h1>Exemplo 2</h1>
+		<p class="lead">Alterando a frequência com eventos do browser.</p>
+    <p class="code">
+      <span class="var">audio_context</span> = new (window.AudioContext || window.webkitAudioContext)();<br>
+      <span class="var">oscillator</span> = <span class="var">audio_context</span>.createOscillator();<br>
+      <br>
+      <span class="var">oscillator</span>.type = <span class="val">'sin'</span>;<br>
+      <span class="var">oscillator</span>.frequency.value = <span class="val">261.6</span>;<br>
+      <span class="var">oscillator</span>.start();<br>
+      <br>
+
+      <span class="var">oscillator</span>.connect(<span class="var">audio_context</span>.destination);<br><br>
+      <span class="jquery">$(document).mousemove</span>(<span class="func">function</span>(document) {<br>
+        &ensp;<span class="var">mouse_pos_value</span> = <span class="func">get_mouse_pos_value</span>(document);<br>
+        &ensp;<span class="var">oscillator</span>.frequency.value = <br>
+        &ensp;&ensp;&ensp;&ensp;&ensp;<span class="var">min_freq</span> + <span class="var">mouse_pos_value</span> * (<span class="var">max_freq</span>-<span class="var">min_freq</span>);<br>
+      });<br><br>
+
+      <span class="func">function get_mouse_pos_value</span>(element){<br>
+        &ensp;<span class="var">width_value</span> = element.pageX/$(window).width();<br>
+        &ensp;<span class="var">height_value</span> = element.pageY/$(window).height();<br>
+        &ensp;return (<span class="var">width_value</span>+<span class="var">height_value</span>)/2;<br>
+      }
+    </p>
   </div>
   <footer class="footer">
     <div class="container">
-      <a class="btn btn-default pull-right" href="../3/index.html">Next</a>
-      <a class="btn btn-default" href="../1/index.html">Back</a>
+      <a class="btn btn-default pull-right" href="../3/index.html">Próximo</a>
+      <a class="btn btn-default" href="../1/index.html">Anterior</a>
     </div>
   </footer>
 </body>
