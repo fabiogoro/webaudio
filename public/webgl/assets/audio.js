@@ -17,3 +17,12 @@ gain.connect(audio_context.destination);
 
 oscillator.start(0);
 gain.gain.value = 0;
+
+function sound(speed_value) {
+  var now = audio_context.currentTime;
+  gain.gain.value = speed_value;
+  gain.gain.cancelScheduledValues( now );
+  gain.gain.setValueAtTime(gain.gain.value, now);
+  gain.gain.linearRampToValueAtTime(0 , now + 1);
+  oscillator.frequency.value = min_freq + speed_value * (max_freq-min_freq);
+}

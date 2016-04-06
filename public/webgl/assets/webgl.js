@@ -137,12 +137,7 @@ function render() {
       indices = [];
       index = 0;
       build();
-      var now = audio_context.currentTime;
-      gain.gain.value = speed;
-      gain.gain.cancelScheduledValues( now );
-      gain.gain.setValueAtTime(gain.gain.value, now);
-      gain.gain.linearRampToValueAtTime(0 , now + 1);
-      oscillator.frequency.value = min_freq + speed * (max_freq-min_freq);
+      sound(speed);
     }
   }
   materialAmbient = vec4( 1.0, 1.0, 0.0, 1.0 );
