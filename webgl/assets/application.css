@@ -1,0 +1,10 @@
+body {
+  padding-top: 50px;
+}
+.main-section {
+  padding: 40px 15px;
+  text-align: center;
+}
+canvas {
+  background-color: black;
+}
