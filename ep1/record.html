@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Audio Recording</title>
+  </head>
+  <body>
+    <h1>Audio Recording</h1>
+
+    <p>Recording temporary audio on web audio.</p>
+    <button>Start recording</button>
+  </body>
+  <script>
+var b = document.querySelector("button");
+var clicked = false;
+var chunks = [];
+var source = null;
+var audio_context = new AudioContext();
+var s;
+
+b.addEventListener("click", function(e) {
+  if (navigator.mediaDevices && source === null) {
+    navigator.mediaDevices.getUserMedia ({audio: true}).then(function(stream) {
+      source = audio_context.createMediaStreamSource(stream);
+      source.connect(analyser);
+    });
+  }
+  if (!clicked) {
+    pos = 0;
+    e.target.innerHTML = "Replay";
+    clicked = true;
+  } else {
+    var buffer = audio_context.createBuffer(1, blockSize*outsize, audio_context.sampleRate);
+    var data = buffer.getChannelData(0);
+    data.set(output);
+    var node = audio_context.createBufferSource();
+    node.buffer = buffer;
+    node.connect(audio_context.destination);
+    node.start(audio_context.currentTime);
+    clicked = false;
+    e.target.innerHTML = "Record";
+  }
+});
+
+
+var analyser = audio_context.createAnalyser();
+analyser.fftSize = 4096;
+var blockSize = analyser.frequencyBinCount;
+var dataArray = new Uint8Array(blockSize);
+var input = new Float32Array(blockSize);
+var outsize = 100;
+var output = new Float32Array(blockSize*outsize);
+analyser.getByteTimeDomainData(dataArray);
+var pos = 0;
+
+function draw() {
+  analyser.getFloatTimeDomainData(input);
+  if(pos<outsize){
+    output.set(input,blockSize*pos);
+    pos++;
+  }
+  setTimeout(draw,blockSize/44.1);
+};
+draw();
+  </script>
+</html>
