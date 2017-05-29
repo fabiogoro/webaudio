@@ -1,0 +1,232 @@
+html {
+  box-sizing: border-box;
+  height: 100%;
+}
+body {
+  height: 95%;
+}
+#main{
+  height: 95%;
+}
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+#sliderh{
+  width: 95%;
+  position: fixed;
+  bottom: 10%;
+}
+#sliderv{
+  height: 85%;
+  width: 85%;
+  margin: 0 auto 30px;
+}
+
+.msg {
+  margin: 0;
+  width: 100%; 
+  font-family: arial; 
+  word-wrap: break-word;
+  font-size: 30px;
+}
+
+.on.color0{
+  background-color: red;
+  color: #fff;
+}
+
+.on.color1{
+  background-color: orangered;
+  color: #fff;
+}
+
+.on.color2{
+  background-color: red;
+  color: #fff;
+}
+
+.on.color3{
+  background-color: orangered;
+  color: #fff;
+}
+
+#chat {
+
+}
+
+@media (min-width: 700px) { 
+  #chat {
+    font-size: 20px;
+  }
+}
+
+.visualizer {
+  width: 100%;
+  height: 50%;
+    position: fixed;
+    bottom: 0;
+    z-index: 0;
+}
+
+#messages {
+    z-index: 2;
+}
+
+.btn {
+  padding: 14px 24px;
+  border: 0 none;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+h1 {
+            margin-bottom: 0;
+        }
+        
+        .main {
+            max-width: 560px;
+            border: 1px solid black;
+            padding: 15px;
+            
+        }
+        
+        .play {
+            font-size: 200px;
+            text-decoration: none;
+            color: #f00;
+        }
+        
+        .play:hover {
+            color: #f60;
+        }
+        
+        .play:visited {
+            #333;
+        }
+    
+        .btn {
+            background-color: #f60;
+            color: #fff;
+            text-align: center;
+            padding: 10px;
+        }
+        
+        .btn:hover {
+        background-color: #f00;    
+        }
+        
+        .gg {
+            display: block;
+            width: 100%;
+            font-size: 40px;
+        }
+        
+        .nota {
+            font-size: 10px;
+        }
+
+
+
+#help {
+  position: fixed;
+  bottom: 3px;
+  right: 3px;
+  font-size: 60px;
+}
+
+#close {
+  position: fixed;
+  top: 3px;
+  right: 3px;
+  font-size: 60px;
+  display: none;
+}
+
+#main-help {
+  font-family: sans-serif;
+  font-weight: bold;
+  font-size: 60px;
+  display: none;
+}
+
+#main-config {
+  font-family: sans-serif;
+  font-weight: bold;
+  font-size: 20px;
+  display: none;
+}
+
+#uppercase {
+  display: none;
+  width: 85%;
+}
+
+#lowercase {
+  width: 85%;
+}
+
+#numbers {
+  width: 85%;
+  display:none;
+}
+
+#commands {
+  width: 85%;
+  display:none;
+}
+
+.text {
+    font-size: 12pt;
+}
+
+.faixa {
+    width: 100%;
+    float: left;
+}
+
+.multi .faixa {
+    width: 25%;
+    padding: 5px;
+}
+
+.faixa input {
+    width: 100%;
+      width: 100%; 
+  border: 2px solid #000; 
+  font-family: arial; 
+  font-size: 20px;
+}
+
+
+i.fa-question {
+    display: none;
+}
+
+/* Telefones em landscape e abaixo */
+@media (max-width: 480px)  { 
+
+    .multi .faixa {
+        width: calc(100%-5px);
+    }
+    
+    #main.multi {
+        width: 400%;
+    }
+
+
+}
+
+/* Telefone em landscape a tablet em portrait */
+@media (min-width: 481px) and (max-width: 767px) { 
+ .multi .faixa {
+        width: calc(100%-5px);
+    }
+    
+    #main.multi {
+        width: 200%;
+    }
+
+}
+

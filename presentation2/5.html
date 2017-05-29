@@ -1,0 +1,27 @@
+<html>
+  <head>
+    <title>5</title>
+		<link rel="stylesheet" href="main.css"></script>
+</head>
+<body>
+	<div class="content">
+		<h1>Analyser e Biquad Filter</h1>
+    <p class="row center">
+    <label for="low_frequency">Passa baixa: <span id="actual_low">2000</span>hz</label></button>
+    <input id="low_frequency" type="range" min=10 max=22050 step=1 value=2000 onmousemove="change_lowpass(this);"/>
+    </p>
+    <p class="row center">
+    <label for="high_frequency">Passa alta: <span id="actual_high">500</span>hz</label></button>
+    <input id="high_frequency" type="range" min=10 max=22050 step=1 value=500 onmousemove="change_highpass(this);"/>
+    </p>
+    <p><b>Espectro Filtrado:</b></p>
+    <canvas class="visualizer" width="640" height="100"></canvas> </br>
+    <p><b>Espectro Original:</b></p>
+    <canvas class="nofilter" width="640" height="100"></canvas> 
+	</div>
+
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <script src="5.js" type="text/javascript"></script>
+    <script src="main.js" type="text/javascript"></script>
+</body>
+</html>
