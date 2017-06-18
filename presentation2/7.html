@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>7</title>
+    <link rel="stylesheet" href="main.css"> 
+  </head>
+  <body>
+    <div class="content">
+    <h1>Oscillators</h1>
+    <canvas class="visualizer" width="640" height="100"></canvas>
+    <p> ZCR: <span class="zcr"></span><br>
+    <canvas class="visualizer2" width="640" height="100"></canvas></p>
+    <p> RMS: <span class="RMS"></span><br>
+    <canvas class="visualizer4" width="640" height="100"></canvas></p>
+    </div>
+  </body>
+  <script>
+var b = document.querySelector("button");
+var clicked = false;
+var chunks = [];
+var source;
+var audio_context = new AudioContext();
+
+function get_context(element){
+  var canvas = document.querySelector(element);
+  WIDTH = canvas.width;
+  HEIGHT = canvas.height;
+  ctx = canvas.getContext("2d");
+  ctx.fillStyle = 'rgb(200, 200, 200)';
+  ctx.fillRect(0, 0, WIDTH, HEIGHT);
+  ctx.lineWidth = 2;
+  ctx.strokeStyle = 'rgb(0, 0, 0)';
+  return ctx;
+}
+
+var zcr = document.querySelector('.zcr');
+var peak = document.querySelector('.peak');
+var rms = document.querySelector('.RMS');
+var WIDTH;
+var HEIGHT;
+var canvasCtx = get_context('.visualizer');
+var canvas2Ctx = get_context('.visualizer2');
+var canvas4Ctx = get_context('.visualizer4');
+var analyser = audio_context.createAnalyser();
+analyser.fftSize = 2048;
+var blockSize = analyser.frequencyBinCount;
+var dataArray = new Uint8Array(blockSize);
+var input = new Float32Array(blockSize);
+analyser.getByteTimeDomainData(dataArray);
+var osc = audio_context.createOscillator();
+var gain = audio_context.createGain();
+gain.gain.value = 0;
+osc.start();
+setInterval(function(){ 
+  osc.frequency.value = (osc.frequency.value+2000)%10000;
+  gain.gain.value = (gain.gain.value+0.1)%1;
+}, 1000);
+osc.connect(gain);
+gain.connect(analyser);
+gain.connect(audio_context.destination);
+
+var pos_canvas = 0;
+function draw() {
+  drawVisual = requestAnimationFrame(draw);
+  analyser.getByteTimeDomainData(dataArray);
+  canvasCtx.fillStyle = 'rgb(200, 200, 200)';
+  canvasCtx.fillRect(0, 0, WIDTH, HEIGHT);
+  canvasCtx.lineWidth = 2;
+  canvasCtx.strokeStyle = 'rgb(0, 0, 0)';
+  canvasCtx.beginPath();
+
+  var sliceWidth = WIDTH * 1.0 / blockSize;
+  var x = 0;
+  var last = null;
+  var count = 0;
+
+  for(var i = 0; i < blockSize; i++) {
+    input[i] = dataArray[i]/128-1;
+    val = input[i];
+    if(last!=null) count += (val*last<0);
+    last = val;
+    var v = dataArray[i] / 128.0;
+    var y = v * HEIGHT/2;
+    if(i === 0) {
+      canvasCtx.moveTo(x, y);
+    } else {
+      canvasCtx.lineTo(x, y);
+    }
+    x += sliceWidth;
+  }
+
+  canvasCtx.lineTo(WIDTH, HEIGHT/2);
+  canvasCtx.stroke();
+
+  val = count/blockSize;
+  zcr.innerHTML = val; // Write number on screen
+  draw_path(canvas2Ctx, val);
+
+  val = Math.sqrt(input.reduce((a, b) => (a + b*b))/2048);
+  rms.innerHTML = val;
+  draw_path(canvas4Ctx, val);
+
+  pos_canvas = (pos_canvas+1)%WIDTH;
+};
+
+function draw_path(ctx, val){
+  ctx.beginPath();
+  ctx.moveTo(pos_canvas, HEIGHT-val*HEIGHT);
+  ctx.lineTo(pos_canvas+1, HEIGHT-val*HEIGHT);
+  ctx.stroke();
+  if(pos_canvas>=WIDTH-1){
+    ctx.fillRect(0, 0, WIDTH, HEIGHT);
+  }
+}
+
+draw();
+  </script>
+  <script src="main.js"></script>
+</html>

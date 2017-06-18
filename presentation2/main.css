@@ -1,0 +1,28 @@
+body{
+  font-size: 1.8em;
+  height: 95%;
+  width: 95%;
+  font-family: Ubuntu, sans-serif;
+}
+
+.content{
+  margin: auto;
+  height: 90%;
+  width: 90%;
+  padding: 10px;
+  text-align: center;
+}
+
+table{
+  margin: auto;
+  width: 90%;
+}
+
+td{
+  padding: 10px;
+}
+
+tr td:first-child{
+  text-align: right;
+  font-size: 1.8em;
+}
