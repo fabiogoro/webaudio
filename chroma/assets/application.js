@@ -17,59 +17,12 @@ var notes = [{ name: 'c4', frequency: 261.6, keyCode: 65 , oscillator: audio_con
              { name: 'd5', frequency: 587.3, keyCode: 76 , oscillator: audio_context.createGain() },
              { name: 'e5', frequency: 659.3, keyCode: 186, oscillator: audio_context.createGain() }];
 
-/*var notes = [/*{ name: 'a4', frequency: 11.75, keyCode: 72 , oscillator: audio_context.createGain() },
-             { name: 'a4', frequency: 27.5, keyCode: 72 , oscillator: audio_context.createGain() },*/
-         /*   { name: 'a4', frequency: 55.0, keyCode: 72 , oscillator: audio_context.createGain() },
-             { name: 'a4', frequency: 110.0, keyCode: 72 , oscillator: audio_context.createGain() },
-             { name: 'a4', frequency: 220.0, keyCode: 72 , oscillator: audio_context.createGain() },
-             { name: 'a4', frequency: 440.0, keyCode: 72 , oscillator: audio_context.createGain() },
-             { name: 'a4', frequency: 880.0, keyCode: 72 , oscillator: audio_context.createGain() },
-             { name: 'a4', frequency: 1760.0, keyCode: 72 , oscillator: audio_context.createGain() },
-             { name: 'a4', frequency: 3520.0, keyCode: 72 , oscillator: audio_context.createGain() },
-             { name: 'a4', frequency: 7040.0, keyCode: 72 , oscillator: audio_context.createGain() },
-               { name: 'a4', frequency: 14080.0, keyCode: 72 , oscillator: audio_context.createGain() },
-             { name: 'a4', frequency: 22000.0, keyCode: 72 , oscillator: audio_context.createGain() }
-            ];*/
-
-
-var buffer = null;
-
-function load(url) {
-  var request = new XMLHttpRequest();
-  request.open('GET', url, true);
-  request.responseType = 'arraybuffer';
-
-  request.onload = function() {
-    audio_context.decodeAudioData(request.response, function(data) {
-      buffer = data;
-    });
-  }
-  request.send();
-}
-
 var gain_value;
 var playing = [];
 
 var compressor = audio_context.createDynamicsCompressor();
 
 compressor.connect(audio_context.destination);
-
-navigator.getUserMedia  = navigator.getUserMedia ||
-                          navigator.webkitGetUserMedia ||
-                          navigator.mozGetUserMedia ||
-                          navigator.msGetUserMedia;
-
-if (navigator.getUserMedia) {
-  navigator.getUserMedia({audio: true, video: false}, function(stream) {
-    source = audio_context.createMediaStreamSource(stream);
-    source.connect(compressor);
-  }, function(e) {
-    console.log('Reeeejected!', e);
-  });
-} else {
-  var video = document.querySelector('video');
-  video.src = 'somevideo.webm'; // fallback.
-}
 
 function play(note) {
   if(note.oscillator.gain.value == 0) {
@@ -78,20 +31,12 @@ function play(note) {
   }
 }
 
-function play_buffer(){
-  var source = audio_context.createBufferSource();
-  source.buffer = buffer;
-  source.connect(compressor);
-  source.start();
-}
-
 function stop(note) {
   note.oscillator.gain.value = 0;
   playing.pop(note);
 }
 
 $(function(){
-  load('assets/hardest.mp3');
   function setup(note) {
     var osc = audio_context.createOscillator();
     osc.type = 'sine';
@@ -118,7 +63,6 @@ $(function(){
       case 76: play(notes[8]); break;
       case 77: play(notes[9]); break;
       case 78: play(notes[10]); break;
-      case 79: play_buffer(); break;
     }
   });
   $('body').on('keyup', function(e) {
@@ -134,7 +78,6 @@ $(function(){
       case 76: stop(notes[8]); break;
       case 77: stop(notes[9]); break;
       case 78: stop(notes[10]); break;
-      case 79: /*stop(notes[11]);*/ break;
     }
   });
 });
